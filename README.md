@@ -5,7 +5,7 @@ Project for building out OpenStack COE.
 This setup requires that a few additional dependencies are installed:
 
 * virtualbox
-* vagrant
+* vagrant (see below)
 
 ## Developer instructions
 
@@ -14,16 +14,17 @@ Developers should be started by installing the following simple utility:
 
     mkdir vendor
     export GEM_HOME=`pwd`/vendor
+    gem install vagrant
     gem install thor --no-ri --no-rdoc
     git clone git://github.com/bodepd/librarian-puppet-simple vendor/librarian-puppet-simple
     export PATH=`pwd`/vendor/librarian-puppet-simple/bin/:$PATH
 
 Once this library is installed, you can run the following command from this project's
-root directory:
+root directory (you only need to do this once, or you need to delete the modules in the modules/ directory):
 
     librarian-puppet install --verbose
 
-Add the basebox
+Add the basebox (only need to do this once as well)
 
     vagrant box add blank blank.box
 
@@ -44,9 +45,9 @@ Next, bring up the build server:
 
 Now, bring up the blank boxes so that they can PXE boot against the master
 
-    vagrant up control
+    vagrant up control_pxe
 
-    vagrant up compute
+    vagrant up compute_pxe
 
 
 Now, you have created a fully functional openstack environment, now have a look at some services:
